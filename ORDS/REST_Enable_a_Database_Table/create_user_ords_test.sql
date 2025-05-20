@@ -1,0 +1,4 @@
+CREATE USER ordstest IDENTIFIED BY password;
+GRANT "CONNECT" TO ordstest;
+GRANT "RESOURCE" TO ordstest;
+GRANT UNLIMITED TABLESPACE TO ordstest

@@ -20,6 +20,7 @@ SET VERIFY OFF
 SET HEADING OFF
 SET FEEDBACK OFF
 
+
 -- Exit setup script on any error
 WHENEVER SQLERROR EXIT SQL.SQLCODE
 
@@ -33,6 +34,11 @@ PROMPT This installation script will automatically exit your database session
 PROMPT at the end of the installation or if any error is encountered.
 PROMPT The entire installation will be logged into the 'ODU_install.log' log file.
 PROMPT
+rem =======================================================
+rem Chance language settings to English
+rem =======================================================
+
+ALTER SESSION SET NLS_DATE_LANGUAGE = 'ENGLISH';
 
 rem =======================================================
 rem Log installation process
