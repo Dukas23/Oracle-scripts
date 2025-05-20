@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  db:
+    image: container-registry.oracle.com/database/free:23.5.0.0
+    hostname: database
+    ports:
+      - 1522:1521
+      - 5501:5500
+    environment:
+      - ORACLE_PWD=pwd
+      - ORACLE_CHARACTERSET=AL32UTF8
+    volumes:
+      - ./oracle_oradata/:/opt/oracle/oradata
+      - ./oracle_startup/:/opt/oracle/scripts/startup
+      - ./oracle_setup/:/opt/oracle/scripts/setup
+  apex:
+    image: container-registry.oracle.com/database/ords-developer:24.3.0
+    ports:
+      - 8181:8181
+    volumes:
+      - ./ords_secrets/:/opt/oracle/variables
+      - ./ords_config/:/etc/ords/config/
+    depends_on:
+      db:
+        condition: service_healthy
